@@ -8,7 +8,7 @@ const AboutScreen = () => {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>About This App</Text>
         <Text style={styles.headerSubtitle}>
-          COMP 3122 · Currency Converter Assignment
+            COMP 3074 · Currency Converter Assignment
         </Text>
       </View>
 
