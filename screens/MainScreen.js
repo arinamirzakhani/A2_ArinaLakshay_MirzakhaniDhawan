@@ -101,12 +101,18 @@ const MainScreen = ({ navigation }) => {
     }
   };
 
+  const formattedAmount = () => {
+    const n = parseFloat(amount);
+    if (isNaN(n)) return amount;
+    return n.toFixed(2);
+  };
+
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      {/* Input Card (first thing on the screen now) */}
+      {/* Input Card */}
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>Currency Converter</Text>
         <Text style={styles.sectionSubtitle}>
@@ -155,19 +161,27 @@ const MainScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      {/* Result Card */}
+      {/* Fancy Result Card */}
       {rate !== null && convertedAmount !== null && (
-        <View style={styles.card}>
-          <Text style={styles.sectionTitle}>Result</Text>
-          <Text style={styles.resultText}>
-            Exchange Rate ({baseCurrency} → {destCurrency}):{" "}
-            <Text style={styles.resultHighlight}>{rate}</Text>
+        <View style={[styles.card, styles.resultCard]}>
+          <Text style={styles.resultLabel}>Result</Text>
+
+          <Text style={styles.resultRoute}>
+            {formattedAmount()} {baseCurrency}{" "}
+            <Text style={styles.arrow}>&rarr;</Text>{" "}
+            {destCurrency.toUpperCase()}
           </Text>
-          <Text style={styles.resultText}>
-            Converted Amount:{" "}
-            <Text style={styles.resultHighlight}>
-              {convertedAmount.toFixed(2)} {destCurrency}
-            </Text>
+
+          <Text style={styles.resultMainAmount}>
+            {convertedAmount.toFixed(2)} {destCurrency.toUpperCase()}
+          </Text>
+
+          <View style={styles.resultDivider} />
+
+          <Text style={styles.resultSmallText}>
+            Exchange Rate ({baseCurrency.toUpperCase()} →{" "}
+            {destCurrency.toUpperCase()}):{" "}
+            <Text style={styles.resultRate}>{rate}</Text>
           </Text>
         </View>
       )}
@@ -244,15 +258,45 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     letterSpacing: 1,
   },
-  resultText: {
-    fontSize: 15,
-    color: "#374151",
-    marginBottom: 6,
+
+  // Result styles
+  resultCard: {
+    backgroundColor: "#EEF2FF",
   },
-  resultHighlight: {
+  resultLabel: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#4F46E5",
+    marginBottom: 4,
+  },
+  resultRoute: {
+    fontSize: 14,
+    color: "#4B5563",
+  },
+  arrow: {
+    fontWeight: "700",
+  },
+  resultMainAmount: {
+    fontSize: 24,
     fontWeight: "700",
     color: "#111827",
+    marginTop: 6,
+    marginBottom: 8,
   },
+  resultDivider: {
+    height: 1,
+    backgroundColor: "#E5E7EB",
+    marginVertical: 8,
+  },
+  resultSmallText: {
+    fontSize: 13,
+    color: "#4B5563",
+  },
+  resultRate: {
+    fontWeight: "600",
+    color: "#111827",
+  },
+
   linkContainer: {
     alignItems: "center",
   },
