@@ -1,4 +1,3 @@
-
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 
@@ -13,7 +12,7 @@ const AboutScreen = () => {
         </Text>
       </View>
 
-      {/* Students card */}
+    
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>Students</Text>
 
@@ -39,12 +38,12 @@ const AboutScreen = () => {
             <Text style={styles.label}>Name</Text>
             <Text style={styles.value}>Lakshay Dhawan</Text>
             <Text style={styles.label}>Student ID</Text>
-            <Text style={styles.value}>LAKSHAY_STUDENT_ID_HERE</Text>
+            <Text style={styles.value}>101464864</Text>
           </View>
         </View>
       </View>
 
-      {/* Description card */}
+    
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>Application Description</Text>
         <Text style={styles.description}>
