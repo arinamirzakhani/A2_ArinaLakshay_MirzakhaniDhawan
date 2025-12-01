@@ -4,10 +4,10 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   StyleSheet,
   ActivityIndicator,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 
 const API_URL = "https://api.freecurrencyapi.com/v1/latest";
@@ -102,117 +102,183 @@ const MainScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Currency Converter</Text>
-
-      <Text style={styles.label}>Base Currency (e.g. CAD, USD):</Text>
-      <TextInput
-        style={styles.input}
-        value={baseCurrency}
-        onChangeText={(text) => setBaseCurrency(text.toUpperCase())}
-        autoCapitalize="characters"
-        maxLength={3}
-      />
-
-      <Text style={styles.label}>Destination Currency:</Text>
-      <TextInput
-        style={styles.input}
-        value={destCurrency}
-        onChangeText={(text) => setDestCurrency(text.toUpperCase())}
-        autoCapitalize="characters"
-        maxLength={3}
-      />
-
-      <Text style={styles.label}>Amount:</Text>
-      <TextInput
-        style={styles.input}
-        value={amount}
-        onChangeText={setAmount}
-        keyboardType="numeric"
-      />
-
-      {error ? <Text style={styles.error}>{error}</Text> : null}
-
-      {/* Button moved lower using buttonContainer */}
-      <View style={styles.buttonContainer}>
-        {loading ? (
-          <ActivityIndicator />
-        ) : (
-          <Button title="Convert" onPress={handleConvert} />
-        )}
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.contentContainer}
+    >
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Currency Converter</Text>
+        <Text style={styles.headerSubtitle}>
+          Convert amounts using live exchange rates
+        </Text>
       </View>
 
+      {/* Input Card */}
+      <View style={styles.card}>
+        <Text style={styles.sectionTitle}>Conversion Details</Text>
+
+        <Text style={styles.label}>Base Currency (e.g. CAD, USD):</Text>
+        <TextInput
+          style={styles.input}
+          value={baseCurrency}
+          onChangeText={(text) => setBaseCurrency(text.toUpperCase())}
+          autoCapitalize="characters"
+          maxLength={3}
+        />
+
+        <Text style={styles.label}>Destination Currency:</Text>
+        <TextInput
+          style={styles.input}
+          value={destCurrency}
+          onChangeText={(text) => setDestCurrency(text.toUpperCase())}
+          autoCapitalize="characters"
+          maxLength={3}
+        />
+
+        <Text style={styles.label}>Amount:</Text>
+        <TextInput
+          style={styles.input}
+          value={amount}
+          onChangeText={setAmount}
+          keyboardType="numeric"
+        />
+
+        {error ? <Text style={styles.error}>{error}</Text> : null}
+
+        {/* Styled Convert Button */}
+        <TouchableOpacity
+          style={styles.convertButton}
+          onPress={handleConvert}
+          disabled={loading}
+        >
+          {loading ? (
+            <ActivityIndicator color="#FFFFFF" />
+          ) : (
+            <Text style={styles.convertButtonText}>CONVERT</Text>
+          )}
+        </TouchableOpacity>
+      </View>
+
+      {/* Result Card */}
       {rate !== null && convertedAmount !== null && (
-        <View style={styles.resultContainer}>
+        <View style={styles.card}>
+          <Text style={styles.sectionTitle}>Result</Text>
           <Text style={styles.resultText}>
-            Exchange Rate ({baseCurrency} → {destCurrency}): {rate}
+            Exchange Rate ({baseCurrency} → {destCurrency}):{" "}
+            <Text style={styles.resultHighlight}>{rate}</Text>
           </Text>
           <Text style={styles.resultText}>
-            Converted Amount: {convertedAmount.toFixed(2)} {destCurrency}
+            Converted Amount:{" "}
+            <Text style={styles.resultHighlight}>
+              {convertedAmount.toFixed(2)} {destCurrency}
+            </Text>
           </Text>
         </View>
       )}
 
+      {/* Link to About Screen */}
       <TouchableOpacity
-        style={styles.aboutButton}
+        style={styles.linkContainer}
         onPress={() => navigation.navigate("About")}
       >
-        <Text style={styles.aboutButtonText}>Go to About Screen</Text>
+        <Text style={styles.linkText}>Go to About Screen</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
-    backgroundColor: "#fff",
+    backgroundColor: "#F3F4F6",
   },
-  title: {
+  contentContainer: {
+    paddingBottom: 24,
+  },
+  header: {
+    paddingTop: 32,
+    paddingBottom: 20,
+    paddingHorizontal: 24,
+    backgroundColor: "#2563EB",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    elevation: 3,
+  },
+  headerTitle: {
     fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 24,
-    textAlign: "center",
+    fontWeight: "700",
+    color: "#FFFFFF",
+  },
+  headerSubtitle: {
+    marginTop: 4,
+    fontSize: 14,
+    color: "#DBEAFE",
+  },
+  card: {
+    backgroundColor: "#FFFFFF",
+    marginHorizontal: 16,
+    marginTop: 20,
+    padding: 16,
+    borderRadius: 16,
+    elevation: 2,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "600",
+    marginBottom: 12,
+    color: "#111827",
   },
   label: {
-    fontSize: 16,
+    fontSize: 14,
     marginTop: 8,
+    color: "#374151",
+    fontWeight: "500",
   },
   input: {
     borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 6,
+    borderColor: "#D1D5DB",
+    borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 8,
     marginTop: 4,
+    backgroundColor: "#F9FAFB",
   },
   error: {
-    color: "red",
+    color: "#DC2626",
     marginTop: 12,
     marginBottom: 8,
+    fontSize: 13,
   },
-  buttonContainer: {
-    marginTop: 24, 
-  },
-  resultContainer: {
+  convertButton: {
     marginTop: 16,
-    padding: 12,
-    borderRadius: 6,
-    borderWidth: 1,
-    borderColor: "#ddd",
-  },
-  resultText: {
-    fontSize: 16,
-    marginBottom: 4,
-  },
-  aboutButton: {
-    marginTop: 24,
+    backgroundColor: "#2563EB",
+    paddingVertical: 12,
+    borderRadius: 999,
     alignItems: "center",
   },
-  aboutButtonText: {
+  convertButtonText: {
+    color: "#FFFFFF",
     fontSize: 16,
-    color: "blue",
+    fontWeight: "600",
+    letterSpacing: 1,
+  },
+  resultText: {
+    fontSize: 15,
+    color: "#374151",
+    marginBottom: 6,
+  },
+  resultHighlight: {
+    fontWeight: "700",
+    color: "#111827",
+  },
+  linkContainer: {
+    marginTop: 16,
+    alignItems: "center",
+  },
+  linkText: {
+    fontSize: 15,
+    color: "#2563EB",
     textDecorationLine: "underline",
   },
 });
