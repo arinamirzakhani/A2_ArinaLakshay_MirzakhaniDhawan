@@ -112,7 +112,7 @@ const MainScreen = ({ navigation }) => {
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      {/* Input Card */}
+      
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>Currency Converter</Text>
         <Text style={styles.sectionSubtitle}>
@@ -147,7 +147,7 @@ const MainScreen = ({ navigation }) => {
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
 
-        {/* Styled Convert Button */}
+       
         <TouchableOpacity
           style={styles.convertButton}
           onPress={handleConvert}
@@ -161,7 +161,7 @@ const MainScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      {/* Fancy Result Card */}
+   
       {rate !== null && convertedAmount !== null && (
         <View style={[styles.card, styles.resultCard]}>
           <Text style={styles.resultLabel}>Result</Text>
@@ -186,7 +186,7 @@ const MainScreen = ({ navigation }) => {
         </View>
       )}
 
-      {/* Link to About Screen */}
+     
       <TouchableOpacity
         style={styles.linkContainer}
         onPress={() => navigation.navigate("About")}
@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
 
-  // Result styles
+
   resultCard: {
     backgroundColor: "#EEF2FF",
   },
