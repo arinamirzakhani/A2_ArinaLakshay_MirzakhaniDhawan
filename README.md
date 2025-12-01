@@ -95,7 +95,6 @@ The app:
 The app handles errors such as:
 - Invalid currency codes
 - Missing currency in API response
-- Invalid API key
 - Network errors
 - Unexpected API structure
 
