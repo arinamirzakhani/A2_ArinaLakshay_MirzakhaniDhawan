@@ -106,17 +106,12 @@ const MainScreen = ({ navigation }) => {
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Currency Converter</Text>
-        <Text style={styles.headerSubtitle}>
+      {/* Input Card (first thing on the screen now) */}
+      <View style={styles.card}>
+        <Text style={styles.sectionTitle}>Currency Converter</Text>
+        <Text style={styles.sectionSubtitle}>
           Convert amounts using live exchange rates
         </Text>
-      </View>
-
-      {/* Input Card */}
-      <View style={styles.card}>
-        <Text style={styles.sectionTitle}>Conversion Details</Text>
 
         <Text style={styles.label}>Base Currency (e.g. CAD, USD):</Text>
         <TextInput
@@ -194,31 +189,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#F3F4F6",
   },
   contentContainer: {
-    paddingBottom: 24,
-  },
-  header: {
-    paddingTop: 32,
-    paddingBottom: 20,
-    paddingHorizontal: 24,
-    backgroundColor: "#2563EB",
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    elevation: 3,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontWeight: "700",
-    color: "#FFFFFF",
-  },
-  headerSubtitle: {
-    marginTop: 4,
-    fontSize: 14,
-    color: "#DBEAFE",
+    paddingVertical: 24,
   },
   card: {
     backgroundColor: "#FFFFFF",
     marginHorizontal: 16,
-    marginTop: 20,
+    marginBottom: 20,
     padding: 16,
     borderRadius: 16,
     elevation: 2,
@@ -226,8 +202,13 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: "600",
-    marginBottom: 12,
     color: "#111827",
+  },
+  sectionSubtitle: {
+    fontSize: 13,
+    color: "#6B7280",
+    marginTop: 4,
+    marginBottom: 8,
   },
   label: {
     fontSize: 14,
@@ -273,7 +254,6 @@ const styles = StyleSheet.create({
     color: "#111827",
   },
   linkContainer: {
-    marginTop: 16,
     alignItems: "center",
   },
   linkText: {
