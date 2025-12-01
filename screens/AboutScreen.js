@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 const AboutScreen = () => {
   return (
     <ScrollView style={styles.container}>
-      {/* Header */}
+     
       <View style={styles.header}>
         <Text style={styles.headerTitle}>About This App</Text>
         <Text style={styles.headerSubtitle}>
@@ -67,7 +67,6 @@ const AboutScreen = () => {
         </Text>
       </View>
 
-      {/* Footer note */}
       <Text style={styles.footerText}>
         Built with React Native, Expo, and React Navigation.
       </Text>
