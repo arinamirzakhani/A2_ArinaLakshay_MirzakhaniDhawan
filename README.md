@@ -1,11 +1,106 @@
-# Sample Snack app
+A2 – Currency Converter (React Native)
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
+Course
+COMP 3122 – Mobile Application Development 1
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo cli](https://docs.expo.dev/get-started/installation/#expo-cli)).
+Students
+Arina Mirzakhani – 101418340
+Lakshay Dhawan – [Student ID]
 
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
+Project Overview
+This project is a simple currency converter built with React Native and Expo that runs on Android.
+The app has two screens:
 
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.dev/c/expo-dev-tools/61) or [Discord](https://chat.expo.dev/).
+MainScreen:
+- Reads base currency code (default: CAD)
+- Reads destination currency code
+- Reads amount (default: 1)
+- Validates input
+- Calls the FreeCurrencyAPI to get the latest exchange rate
+- Displays the exchange rate and the converted amount
+- Shows meaningful error messages for invalid input, missing currency, invalid API key, or network issues
 
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
+AboutScreen:
+- Shows full student name
+- Shows student ID
+- Shows a brief app description
+
+Navigation between the screens is implemented using React Navigation (stack navigation).
+
+-------------------------------------------------------------
+
+Requirements Mapping
+
+1. Two Screens & Navigation
+- App.js sets up stack navigation using:
+  @react-navigation/native
+  @react-navigation/native-stack
+- The app contains:
+  MainScreen – main currency conversion logic
+  AboutScreen – student details and app info
+- Navigation is performed using:
+  navigation.navigate("About")
+
+2. Inputs & Default Values (MainScreen)
+The app reads the following inputs:
+
+Base currency:
+- State variable: baseCurrency
+- Default value: "CAD"
+
+Destination currency:
+- State variable: destCurrency
+
+Amount:
+- State variable: amount
+- Default value: "1"
+
+Inputs are collected using TextInput components.
+
+3. Input Validation
+Validation happens in the validateInputs() function.
+
+Currency code validation:
+- Must be a 3-letter uppercase ISO code
+- Enforced using regex: ^[A-Z]{3}$
+- Text is automatically converted to uppercase
+- maxLength is set to 3
+
+Amount validation:
+- Must be a positive number
+- Checked using parseFloat
+- If invalid, an error message is shown
+
+If validation fails:
+- A clear red error message is displayed on the screen
+
+4. API Integration (FreeCurrencyAPI)
+The app calls the FreeCurrencyAPI endpoint:
+https://api.freecurrencyapi.com/v1/latest
+
+Request URL example:
+${API_URL}?apikey=${API_KEY}&base_currency=${baseCurrency}
+
+The app:
+- Sends the request using fetch
+- Parses the JSON response
+- Checks if data exists
+- Checks if the destination currency exists in data.data
+- Extracts the exchange rate
+- Calculates converted amount using:
+  const converted = numericAmount * rateValue
+- Displays exchange rate and converted amount
+
+5. Error Handling & Messages
+The app handles errors such as:
+- Invalid currency codes
+- Missing currency in API response
+- Invalid API key
+- Network errors
+- Unexpected API structure
+
+
+
+
+
+
