@@ -120,13 +120,13 @@ const MainScreen = ({ navigation }) => {
           Convert amounts using live exchange rates
         </Text>
 
-        <Text style={styles.label}>Base Currency (e.g. CAD, USD):</Text>
-        <TextInput
-          style={styles.input}
+        <LabeledInput
+          label="Base Currency (e.g. CAD, USD):"
           value={baseCurrency}
           onChangeText={(text) => setBaseCurrency(text.toUpperCase())}
           autoCapitalize="characters"
           maxLength={3}
+          placeholder="CAD"
         />
 
         <Text style={styles.label}>Destination Currency:</Text>
