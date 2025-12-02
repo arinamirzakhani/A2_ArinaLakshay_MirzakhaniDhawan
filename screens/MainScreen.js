@@ -220,10 +220,10 @@ const styles = StyleSheet.create({
     color: "#111827",
   },
   sectionSubtitle: {
-    fontSize: 13,
+    fontSize: 14,
     color: "#6B7280",
     marginTop: 4,
-    marginBottom: 8,
+    marginBottom: 20,
   },
 
 
