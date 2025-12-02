@@ -225,12 +225,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
     marginBottom: 8,
   },
-  label: {
-    fontSize: 14,
-    marginTop: 8,
-    color: "#374151",
-    fontWeight: "500",
-  },
+
   input: {
     borderWidth: 1,
     borderColor: "#D1D5DB",
