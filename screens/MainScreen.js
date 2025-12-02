@@ -138,12 +138,12 @@ const MainScreen = ({ navigation }) => {
           placeholder="USD"
         />
 
-        <Text style={styles.label}>Amount:</Text>
-        <TextInput
-          style={styles.input}
+        <LabeledInput
+          label="Amount:"
           value={amount}
           onChangeText={setAmount}
           keyboardType="numeric"
+          placeholder="1.00"
         />
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
