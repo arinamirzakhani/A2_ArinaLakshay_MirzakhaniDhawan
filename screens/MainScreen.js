@@ -9,6 +9,8 @@ import {
   ScrollView,
 } from "react-native";
 
+import LabeledInput from "../components/LabeledInput";
+
 const API_URL = "https://api.freecurrencyapi.com/v1/latest";
 const API_KEY = "fca_live_mmHA6KlMfrlzX2s6pfx34aFwsC4hQYq1q2cFtGYb";
 
@@ -69,7 +71,7 @@ const MainScreen = ({ navigation }) => {
           if (errorData && errorData.message) {
             message = errorData.message;
           }
-        } catch (e) {}
+        } catch (e) { }
         throw new Error(message);
       }
 
@@ -111,7 +113,7 @@ const MainScreen = ({ navigation }) => {
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      
+
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>Currency Converter</Text>
         <Text style={styles.sectionSubtitle}>
@@ -146,7 +148,7 @@ const MainScreen = ({ navigation }) => {
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
 
-       
+
         <TouchableOpacity
           style={styles.convertButton}
           onPress={handleConvert}
@@ -160,7 +162,7 @@ const MainScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-   
+
       {rate !== null && convertedAmount !== null && (
         <View style={[styles.card, styles.resultCard]}>
           <Text style={styles.resultLabel}>Result</Text>
@@ -185,7 +187,7 @@ const MainScreen = ({ navigation }) => {
         </View>
       )}
 
-     
+
       <TouchableOpacity
         style={styles.linkContainer}
         onPress={() => navigation.navigate("About")}
