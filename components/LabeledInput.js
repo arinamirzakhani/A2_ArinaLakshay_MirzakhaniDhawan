@@ -1,6 +1,19 @@
 import React from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 
+/**
+ * A reusable input component with a label.
+ *
+ * @param {Object} props
+ * @param {string} props.label - The label text to display above the input.
+ * @param {string} props.value - The current value of the input.
+ * @param {function} props.onChangeText - Callback when text changes.
+ * @param {string} [props.placeholder] - Placeholder text.
+ * @param {string} [props.keyboardType] - Keyboard type (default: "default").
+ * @param {string} [props.autoCapitalize] - Auto-capitalization behavior (default: "none").
+ * @param {number} [props.maxLength] - Maximum length of input.
+ * @param {Object} [props.style] - Additional styles for the container.
+ */
 const LabeledInput = ({
     label,
     value,
