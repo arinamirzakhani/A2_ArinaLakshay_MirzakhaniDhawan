@@ -129,13 +129,13 @@ const MainScreen = ({ navigation }) => {
           placeholder="CAD"
         />
 
-        <Text style={styles.label}>Destination Currency:</Text>
-        <TextInput
-          style={styles.input}
+        <LabeledInput
+          label="Destination Currency:"
           value={destCurrency}
           onChangeText={(text) => setDestCurrency(text.toUpperCase())}
           autoCapitalize="characters"
           maxLength={3}
+          placeholder="USD"
         />
 
         <Text style={styles.label}>Amount:</Text>
