@@ -226,15 +226,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 
-  input: {
-    borderWidth: 1,
-    borderColor: "#D1D5DB",
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    marginTop: 4,
-    backgroundColor: "#F9FAFB",
-  },
+
   error: {
     color: "#DC2626",
     marginTop: 12,
