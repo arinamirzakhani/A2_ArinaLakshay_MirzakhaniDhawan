@@ -5,7 +5,7 @@ COMP 3074 – Mobile Application Development 1
 
 Students
 Arina Mirzakhani – 101418340
-Lakshay Dhawan – 101418340
+Lakshay Dhawan – 101464867
 
 Project Overview
 This project is a simple currency converter built with React Native and Expo that runs on Android.
