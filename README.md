@@ -1,7 +1,7 @@
 A2 – Currency Converter (React Native)
 
 Course
-COMP 3122 – Mobile Application Development 1
+COMP 3074 – Mobile Application Development 1
 
 Students
 Arina Mirzakhani – 101418340
