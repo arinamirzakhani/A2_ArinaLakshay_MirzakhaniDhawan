@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
   StyleSheet,
   ActivityIndicator,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+
+import LabeledInput from "../components/LabeledInput";
 
 const API_URL = "https://api.freecurrencyapi.com/v1/latest";
 const API_KEY = "fca_live_mmHA6KlMfrlzX2s6pfx34aFwsC4hQYq1q2cFtGYb";
@@ -69,7 +70,7 @@ const MainScreen = ({ navigation }) => {
           if (errorData && errorData.message) {
             message = errorData.message;
           }
-        } catch (e) {}
+        } catch (e) { }
         throw new Error(message);
       }
 
@@ -111,42 +112,42 @@ const MainScreen = ({ navigation }) => {
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      
+
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>Currency Converter</Text>
         <Text style={styles.sectionSubtitle}>
           Convert amounts using live exchange rates
         </Text>
 
-        <Text style={styles.label}>Base Currency (e.g. CAD, USD):</Text>
-        <TextInput
-          style={styles.input}
+        <LabeledInput
+          label="Base Currency (e.g. CAD, USD):"
           value={baseCurrency}
           onChangeText={(text) => setBaseCurrency(text.toUpperCase())}
           autoCapitalize="characters"
           maxLength={3}
+          placeholder="CAD"
         />
 
-        <Text style={styles.label}>Destination Currency:</Text>
-        <TextInput
-          style={styles.input}
+        <LabeledInput
+          label="Destination Currency:"
           value={destCurrency}
           onChangeText={(text) => setDestCurrency(text.toUpperCase())}
           autoCapitalize="characters"
           maxLength={3}
+          placeholder="USD"
         />
 
-        <Text style={styles.label}>Amount:</Text>
-        <TextInput
-          style={styles.input}
+        <LabeledInput
+          label="Amount:"
           value={amount}
           onChangeText={setAmount}
           keyboardType="numeric"
+          placeholder="1.00"
         />
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
 
-       
+
         <TouchableOpacity
           style={styles.convertButton}
           onPress={handleConvert}
@@ -160,7 +161,7 @@ const MainScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-   
+
       {rate !== null && convertedAmount !== null && (
         <View style={[styles.card, styles.resultCard]}>
           <Text style={styles.resultLabel}>Result</Text>
@@ -185,7 +186,7 @@ const MainScreen = ({ navigation }) => {
         </View>
       )}
 
-     
+
       <TouchableOpacity
         style={styles.linkContainer}
         onPress={() => navigation.navigate("About")}
@@ -218,26 +219,13 @@ const styles = StyleSheet.create({
     color: "#111827",
   },
   sectionSubtitle: {
-    fontSize: 13,
+    fontSize: 14,
     color: "#6B7280",
     marginTop: 4,
-    marginBottom: 8,
+    marginBottom: 20,
   },
-  label: {
-    fontSize: 14,
-    marginTop: 8,
-    color: "#374151",
-    fontWeight: "500",
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#D1D5DB",
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    marginTop: 4,
-    backgroundColor: "#F9FAFB",
-  },
+
+
   error: {
     color: "#DC2626",
     marginTop: 12,
